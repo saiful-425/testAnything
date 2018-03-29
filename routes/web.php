@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/create_form', function () {
+    return view('components.text');
+});
