@@ -7,6 +7,10 @@
 
         <title>Laravel</title>
 
+    @foreach ($story->content['body'] as $blok)
+        @include('components/' . $blok['component'], ['blok' => $blok])
+    @endforeach
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -92,4 +96,11 @@
             </div>
         </div>
     </body>
+    <script type="text/javascript" src="//app.storyblok.com/storyblok-latest.js"></script>
+    <script type="text/javascript">
+        storyblok.init();
+        storyblok.on('change', function() {
+            window.location.reload(true);
+        });
+    </script>
 </html>
