@@ -15,6 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/todo', function (){
-    return view('list');
-});
+Route::get('/todo','ListsController@index');
+Route::post('/todo','ListsController@create');
