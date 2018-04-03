@@ -18,13 +18,11 @@
                     <h3 class="panel-title">ToDo List<a href="#" class="pull-right" id="addNewItem" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i></a></h3>
                 </div>
 
-                <div class="panel-body">
+                <div class="panel-body" id="items">
                     <ul class="list-group">
-                        <li class="list-group-item ourItem" data-toggle="modal" data-target="#exampleModal">Cras justo odio</li>
-                        <li class="list-group-item ourItem" data-toggle="modal" data-target="#exampleModal">Dapibus ac facilisis in</li>
-                        <li class="list-group-item ourItem" data-toggle="modal" data-target="#exampleModal">Morbi leo risus</li>
-                        <li class="list-group-item ourItem" data-toggle="modal" data-target="#exampleModal">Porta ac consectetur ac</li>
-                        <li class="list-group-item ourItem" data-toggle="modal" data-target="#exampleModal">Vestibulum at eros</li>
+                        @foreach($items as $item)
+                        <li class="list-group-item ourItem" data-toggle="modal" data-target="#exampleModal">{{$item->item}}</li>
+                        @endforeach
                     </ul>
                 </div>
                 <!-- modal -->
@@ -39,12 +37,11 @@
                             </div>
                             <div class="modal-body">
                                <p> <input type="text" placeholder="add item here..." class="form-control" id="addItems"></p>
-                                {{--{{csrf_field()}}--}}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-warning" id="delete" data-dismiss="modal" style="display: none">Delete</button>
                                 <button type="button" class="btn btn-primary" id="saveChange" style="display: none">Save Changes</button>
-                                <button type="button" class="btn btn-info" id="addButton">Add Item</button>
+                                <button type="button" class="btn btn-info" id="addButton" data-dismiss="modal">Add Item</button>
                             </div>
                         </div>
                     </div>
@@ -81,10 +78,9 @@
                 {
                 'datas': add_items,
                 "_token": "{{ csrf_token() }}"
-                // '_token': $('input[name=_token]').val()
                 },
                 function (data) {
-                console.log(data);
+                $('#items').load(location.href +' #items');
             });
         });
     });
