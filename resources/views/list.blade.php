@@ -74,16 +74,21 @@
             });
         $('#addButton').click(function () {
             var add_items = $('#addItems').val();
-            $.post('todo',
-                {
-                'datas': add_items,
-                "_token": "{{ csrf_token() }}"
+            console.log(add_items);
+            $.ajax({
+                url: 'todo',
+                type: 'POST',
+                data: {
+                    'datas' : add_items,
+                    '_token': '{{ csrf_token() }}',
                 },
-                function (data) {
-                $('#items').load(location.href +' #items');
+                success: function (response) {
+                    $('#items').load(location.href +' #items');
+                }
             });
         });
     });
 </script>
 </body>
 </html>
+
