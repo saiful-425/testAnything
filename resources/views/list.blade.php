@@ -55,17 +55,15 @@
 <script src="{{asset('frontEnd/js/bootstrap.min.js')}}"></script>
 <script>
     $(document).ready(function () {
-        $('.ourItem').each(function () {
-            $(this).click(function (event) {
+        $(document).on('click', '.ourItem', function () {
                 var text = $(this).text();
                 $('#title').text("Edit Item");
                 $('#addItems').val(text);
                 $('#delete').show('400');
                 $('#saveChange').show('400');
                 $('#addButton').hide('400');
-            });
         });
-        $('#addNewItem').click(function (event) {
+        $(document).on('click', '#addNewItem', function (event) {
                 $('#title').text("Add New Item");
                 $('#addItems').val("");
                 $('#delete').hide('400');
